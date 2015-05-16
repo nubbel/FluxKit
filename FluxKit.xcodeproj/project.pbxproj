@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D89A0B71B07DF9100A3CF80 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D89A0B41B07DF9100A3CF80 /* Action.swift */; };
+		5D89A0B81B07DF9100A3CF80 /* Dispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D89A0B51B07DF9100A3CF80 /* Dispatcher.swift */; };
+		5D89A0B91B07DF9100A3CF80 /* TokenStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D89A0B61B07DF9100A3CF80 /* TokenStream.swift */; };
 		5DC489541B0749A500D1C54B /* FluxKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 5DC489531B0749A500D1C54B /* FluxKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5DC4895A1B0749A500D1C54B /* FluxKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DC4894E1B0749A500D1C54B /* FluxKit.framework */; };
 		5DC489611B0749A500D1C54B /* FluxKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC489601B0749A500D1C54B /* FluxKitTests.swift */; };
@@ -23,6 +26,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5D89A0B41B07DF9100A3CF80 /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
+		5D89A0B51B07DF9100A3CF80 /* Dispatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dispatcher.swift; sourceTree = "<group>"; };
+		5D89A0B61B07DF9100A3CF80 /* TokenStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenStream.swift; sourceTree = "<group>"; };
 		5DC4894E1B0749A500D1C54B /* FluxKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FluxKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DC489521B0749A500D1C54B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5DC489531B0749A500D1C54B /* FluxKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FluxKit.h; sourceTree = "<group>"; };
@@ -72,6 +78,9 @@
 			isa = PBXGroup;
 			children = (
 				5DC489531B0749A500D1C54B /* FluxKit.h */,
+				5D89A0B41B07DF9100A3CF80 /* Action.swift */,
+				5D89A0B51B07DF9100A3CF80 /* Dispatcher.swift */,
+				5D89A0B61B07DF9100A3CF80 /* TokenStream.swift */,
 				5DC489511B0749A500D1C54B /* Supporting Files */,
 			);
 			path = FluxKit;
@@ -209,6 +218,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D89A0B91B07DF9100A3CF80 /* TokenStream.swift in Sources */,
+				5D89A0B81B07DF9100A3CF80 /* Dispatcher.swift in Sources */,
+				5D89A0B71B07DF9100A3CF80 /* Action.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,6 +335,7 @@
 		5DC489651B0749A500D1C54B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -332,12 +345,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		5DC489661B0749A500D1C54B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -399,6 +414,7 @@
 				5DC489661B0749A500D1C54B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5DC489671B0749A500D1C54B /* Build configuration list for PBXNativeTarget "FluxKitTests" */ = {
 			isa = XCConfigurationList;
@@ -407,6 +423,7 @@
 				5DC489691B0749A500D1C54B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
