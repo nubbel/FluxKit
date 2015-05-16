@@ -4,4 +4,7 @@
    <FileRef
       location = "container:FluxKit.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "container:Example.xcodeproj">
+   </FileRef>
 </Workspace>
