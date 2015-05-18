@@ -67,7 +67,7 @@ public final class Dispatcher {
     public func waitFor(dispatchTokens: [Token]) {
         for dispatchToken in dispatchTokens {
             if isPending(dispatchToken) {
-                precondition(!isHandled(dispatchToken), "FluxKit.Dispatcher: Circular dependency detected while waiting for \(dispatchToken).")
+                precondition(isHandled(dispatchToken), "FluxKit.Dispatcher: Circular dependency detected while waiting for \(dispatchToken).")
                 
                 continue
             }
