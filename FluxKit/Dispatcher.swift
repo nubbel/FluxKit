@@ -28,7 +28,7 @@ public final class Dispatcher {
         tokenGenerator = TokenStream(prefix: "ID_").generate()
     }
     
-    public func registerCallback(callback: Callback) -> Token {
+    public func register(callback: Callback) -> Token {
         if let token = tokenGenerator.next() {
             callbacks[token] = callback
             
@@ -38,7 +38,7 @@ public final class Dispatcher {
         preconditionFailure("FluxKit.Dispatcher: Failed to generate new dispatch token.")
     }
     
-    public func unregisterCallback(dispatchToken: Token) {
+    public func unregister(dispatchToken: Token) {
         precondition(isRegistered(dispatchToken), "FluxKit.Dispatcher: Unknown dispatch token \(dispatchToken).")
         
         callbacks.removeValueForKey(dispatchToken)

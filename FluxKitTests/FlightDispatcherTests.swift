@@ -75,7 +75,7 @@ class FlightDispatcherTests: XCTestCase {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
 
-        countryStore.dispatchToken = flightDispatcher.registerCallback { [unowned self] action in
+        countryStore.dispatchToken = flightDispatcher.register { [unowned self] action in
             switch action.name {
             case "countryUpdate":
                 self.countryStore.country = action.payload["selectedCountry"] as? String
@@ -84,7 +84,7 @@ class FlightDispatcherTests: XCTestCase {
             }
         }
 
-        cityStore.dispatchToken = flightDispatcher.registerCallback { [unowned self] action in
+        cityStore.dispatchToken = flightDispatcher.register { [unowned self] action in
             switch action.name {
             case "countryUpdate":
                 self.flightDispatcher.waitFor(self.countryStore.dispatchToken!)
@@ -96,7 +96,7 @@ class FlightDispatcherTests: XCTestCase {
             }
         }
 
-        flightPriceStore.dispatchToken = flightDispatcher.registerCallback { [unowned self] action in
+        flightPriceStore.dispatchToken = flightDispatcher.register { [unowned self] action in
             switch action.name {
             case "countryUpdate", "cityUpdate":
                 self.flightDispatcher.waitFor(self.cityStore.dispatchToken!)
@@ -109,9 +109,9 @@ class FlightDispatcherTests: XCTestCase {
     }
     
     override func tearDown() {
-        flightDispatcher.unregisterCallback(countryStore.dispatchToken!)
-        flightDispatcher.unregisterCallback(cityStore.dispatchToken!)
-        flightDispatcher.unregisterCallback(flightPriceStore.dispatchToken!)
+        flightDispatcher.unregister(countryStore.dispatchToken!)
+        flightDispatcher.unregister(cityStore.dispatchToken!)
+        flightDispatcher.unregister(flightPriceStore.dispatchToken!)
         
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()

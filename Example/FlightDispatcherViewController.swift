@@ -98,7 +98,7 @@ class FlightDispatcherViewController: UIViewController {
         
         // register callbacks
         
-        countryStore.dispatchToken = flightDispatcher.registerCallback { [unowned self] action in
+        countryStore.dispatchToken = flightDispatcher.register { [unowned self] action in
             switch action.name {
             case "countryUpdate":
                 self.countryStore.country = action.payload["selectedCountry"] as? String
@@ -107,7 +107,7 @@ class FlightDispatcherViewController: UIViewController {
             }
         }
         
-        cityStore.dispatchToken = flightDispatcher.registerCallback { [unowned self] action in
+        cityStore.dispatchToken = flightDispatcher.register { [unowned self] action in
             switch action.name {
             case "countryUpdate":
                 self.flightDispatcher.waitFor(self.countryStore.dispatchToken!)
@@ -119,7 +119,7 @@ class FlightDispatcherViewController: UIViewController {
             }
         }
         
-        flightPriceStore.dispatchToken = flightDispatcher.registerCallback { [unowned self] action in
+        flightPriceStore.dispatchToken = flightDispatcher.register { [unowned self] action in
             switch action.name {
             case "countryUpdate", "cityUpdate":
                 self.flightDispatcher.waitFor(self.cityStore.dispatchToken!)
