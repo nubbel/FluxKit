@@ -132,6 +132,12 @@ class FlightDispatcherViewController: UIViewController {
         // dispatch initial action
         flightDispatcher.dispatch(Action(name: "countryUpdate", payload: ["selectedCountry": "china"]))
     }
+    
+    deinit {
+        flightDispatcher.unregister(countryStore.dispatchToken!)
+        flightDispatcher.unregister(cityStore.dispatchToken!)
+        flightDispatcher.unregister(flightPriceStore.dispatchToken!)
+    }
 }
 
 
