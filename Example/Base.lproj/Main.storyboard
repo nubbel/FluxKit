@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E17e" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3fD-x7-rdX">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Flight Dispatcher-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="FlightDispatcherViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +16,97 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="YDc-ND-e6x">
+                                <rect key="frame" x="16" y="72" width="568" height="29"/>
+                                <segments>
+                                    <segment title="australia"/>
+                                    <segment title="china"/>
+                                    <segment title="france"/>
+                                    <segment title="india"/>
+                                    <segment title="usa"/>
+                                </segments>
+                                <connections>
+                                    <action selector="countryChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="YIZ-Xh-KPI"/>
+                                </connections>
+                            </segmentedControl>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="INx-Df-SAx">
+                                <rect key="frame" x="16" y="108" width="568" height="29"/>
+                                <segments>
+                                    <segment title="shanghai"/>
+                                    <segment title="beijing"/>
+                                </segments>
+                                <connections>
+                                    <action selector="cityChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="uzG-SV-NMe"/>
+                                </connections>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jes-0Z-wFT">
+                                <rect key="frame" x="16" y="144" width="568" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="YDc-ND-e6x" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="AUT-Ya-3vK"/>
+                            <constraint firstItem="INx-Df-SAx" firstAttribute="leading" secondItem="YDc-ND-e6x" secondAttribute="leading" id="Fd5-3c-aAk"/>
+                            <constraint firstItem="INx-Df-SAx" firstAttribute="trailing" secondItem="jes-0Z-wFT" secondAttribute="trailing" id="Lvi-9c-YQ0"/>
+                            <constraint firstItem="INx-Df-SAx" firstAttribute="top" secondItem="YDc-ND-e6x" secondAttribute="bottom" constant="8" symbolic="YES" id="Rss-4J-PFy"/>
+                            <constraint firstItem="INx-Df-SAx" firstAttribute="leading" secondItem="jes-0Z-wFT" secondAttribute="leading" id="bw6-1f-3lN"/>
+                            <constraint firstItem="YDc-ND-e6x" firstAttribute="trailing" secondItem="INx-Df-SAx" secondAttribute="trailing" id="coq-3n-epC"/>
+                            <constraint firstItem="jes-0Z-wFT" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="gOl-Eu-OIx"/>
+                            <constraint firstItem="jes-0Z-wFT" firstAttribute="top" secondItem="INx-Df-SAx" secondAttribute="bottom" constant="8" symbolic="YES" id="niV-CL-W1l"/>
+                            <constraint firstItem="YDc-ND-e6x" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="pFp-WC-q0p"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Flight Dispatcher" id="yN5-l2-6iX"/>
+                    <connections>
+                        <outlet property="citySelect" destination="INx-Df-SAx" id="kqk-rX-a1m"/>
+                        <outlet property="countrySelect" destination="YDc-ND-e6x" id="UTT-cx-vJU"/>
+                        <outlet property="priceLabel" destination="jes-0Z-wFT" id="TC5-Wt-cEv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="2059" y="349"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="xZZ-C2-OiV">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="3fD-x7-rdX" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="zvi-vh-A4b">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="ZFO-Ex-bk3" kind="relationship" relationship="viewControllers" id="ogj-W6-gl9"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nau-BP-s4U" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="435" y="349"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="J5e-dI-W0U">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ZFO-Ex-bk3" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" systemItem="featured" id="G2K-t2-Rhb"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vAm-j0-lTL">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="q9P-p1-hOH"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GGc-7K-H5o" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1247" y="349"/>
         </scene>
     </scenes>
 </document>
