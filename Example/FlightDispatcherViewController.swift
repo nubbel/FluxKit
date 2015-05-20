@@ -32,12 +32,12 @@ let flightPrices = [
     ]
 ]
 
-func defaultCityForCountry(country: String) -> String {
-    return flightPrices[country]!.keys.first!
-}
-
 func citiesForCountry(country: String) -> [String] {
     return [String](flightPrices[country]!.keys)
+}
+
+func defaultCityForCountry(country: String) -> String {
+    return citiesForCountry(country).first!
 }
 
 func flightPrice(country: String, city: String) -> Int {
