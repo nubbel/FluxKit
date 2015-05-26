@@ -11,23 +11,26 @@ import Foundation
 public typealias Token = String
 
 struct TokenStream {
-    typealias Seed = Int
+    private let prefix : Token
+    private let seed : Int
     
-    let prefix : Token
-    let seed : Seed
-    
-    init(prefix: Token, seed: Seed = 0) {
+    init(prefix: Token, seed: Int = 0) {
         self.prefix = prefix
         self.seed = seed
     }
 }
 
-extension TokenStream : SequenceType {
-    func generate() -> GeneratorOf<Token> {
-        var counter = seed
-        
-        return GeneratorOf {
-            "\(self.prefix)\(counter++)"
+extension TokenStream : CollectionType {
+    var startIndex: Int { return seed }
+    var endIndex:   Int { return Int.max }
+    
+    subscript(index: Int) -> Token {
+        get {
+            return "\(prefix)\(index)"
         }
+    }
+    
+    func generate() -> IndexingGenerator<TokenStream> {
+        return IndexingGenerator(self)
     }
 }
