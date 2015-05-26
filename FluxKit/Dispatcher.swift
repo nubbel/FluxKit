@@ -8,7 +8,7 @@
 
 import Foundation
 
-public final class Dispatcher {
+public class Dispatcher<Action : ActionType> {
     
     public typealias Token = String
     public typealias Callback = Action -> Void

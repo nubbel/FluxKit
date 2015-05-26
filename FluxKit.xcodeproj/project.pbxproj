@@ -14,6 +14,7 @@
 		5DC489541B0749A500D1C54B /* FluxKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 5DC489531B0749A500D1C54B /* FluxKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5DC4895A1B0749A500D1C54B /* FluxKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DC4894E1B0749A500D1C54B /* FluxKit.framework */; };
 		5DC489611B0749A500D1C54B /* FluxKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC489601B0749A500D1C54B /* FluxKitTests.swift */; };
+		CE5299CC1B14A79C00892528 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5299CB1B14A79C00892528 /* Store.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +38,7 @@
 		5DC489591B0749A500D1C54B /* FluxKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FluxKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DC4895F1B0749A500D1C54B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5DC489601B0749A500D1C54B /* FluxKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FluxKitTests.swift; sourceTree = "<group>"; };
+		CE5299CB1B14A79C00892528 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				5DC489531B0749A500D1C54B /* FluxKit.h */,
+				CE5299CB1B14A79C00892528 /* Store.swift */,
 				5D89A0B41B07DF9100A3CF80 /* Action.swift */,
 				5D89A0B51B07DF9100A3CF80 /* Dispatcher.swift */,
 				5D89A0B61B07DF9100A3CF80 /* TokenStream.swift */,
@@ -221,6 +224,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE5299CC1B14A79C00892528 /* Store.swift in Sources */,
 				5D89A0B91B07DF9100A3CF80 /* TokenStream.swift in Sources */,
 				5D89A0B81B07DF9100A3CF80 /* Dispatcher.swift in Sources */,
 				5D89A0B71B07DF9100A3CF80 /* Action.swift in Sources */,

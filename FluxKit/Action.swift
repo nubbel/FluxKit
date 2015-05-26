@@ -8,16 +8,6 @@
 
 import Foundation
 
-public struct Action {
-    public typealias Payload = [String: Any]
-    
-    public let name: String
-    public let payload: Payload
-    public let timestamp: NSDate
-    
-    public init(name: String, payload: Payload, timestamp: NSDate = NSDate()) {
-        self.name = name
-        self.payload = payload
-        self.timestamp = timestamp
-    }
+public protocol ActionType {
+    var name: String { get }
 }
