@@ -14,6 +14,7 @@
 		5D89A0CE1B07E05300A3CF80 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D89A0CC1B07E05300A3CF80 /* Main.storyboard */; };
 		5D89A0D01B07E05300A3CF80 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D89A0CF1B07E05300A3CF80 /* Images.xcassets */; };
 		5D89A0D31B07E05300A3CF80 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D89A0D11B07E05300A3CF80 /* LaunchScreen.xib */; };
+		CE265B6A1B163BAA003BD093 /* FlightDispatcherFlux.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE265B691B163BAA003BD093 /* FlightDispatcherFlux.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		5D89A0CD1B07E05300A3CF80 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5D89A0CF1B07E05300A3CF80 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5D89A0D21B07E05300A3CF80 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		CE265B691B163BAA003BD093 /* FlightDispatcherFlux.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlightDispatcherFlux.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,7 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				5D89A0C81B07E05300A3CF80 /* AppDelegate.swift */,
-				5D89A0CA1B07E05300A3CF80 /* FlightDispatcherViewController.swift */,
+				CE265B6E1B16573A003BD093 /* FlightDispatcher */,
 				5D89A0CC1B07E05300A3CF80 /* Main.storyboard */,
 				5D89A0CF1B07E05300A3CF80 /* Images.xcassets */,
 				5D89A0D11B07E05300A3CF80 /* LaunchScreen.xib */,
@@ -130,6 +132,15 @@
 				5D3DFA0D1B0A16DB003B8B0C /* FluxKit.xcodeproj */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CE265B6E1B16573A003BD093 /* FlightDispatcher */ = {
+			isa = PBXGroup;
+			children = (
+				CE265B691B163BAA003BD093 /* FlightDispatcherFlux.swift */,
+				5D89A0CA1B07E05300A3CF80 /* FlightDispatcherViewController.swift */,
+			);
+			name = FlightDispatcher;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -227,6 +238,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE265B6A1B163BAA003BD093 /* FlightDispatcherFlux.swift in Sources */,
 				5D89A0CB1B07E05300A3CF80 /* FlightDispatcherViewController.swift in Sources */,
 				5D89A0C91B07E05300A3CF80 /* AppDelegate.swift in Sources */,
 			);

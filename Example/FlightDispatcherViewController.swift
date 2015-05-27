@@ -9,84 +9,12 @@
 import UIKit
 import FluxKit
 
-// MARK: - Data
-
-let flightPrices = [
-    "australia": [
-        "sydney": 1920
-    ],
-    "china": [
-        "shanghai": 3280,
-        "beijing": 2910
-    ],
-    "france": [
-        "paris": 3300
-    ],
-    "india": [
-        "mumbai": 2760
-    ],
-    "usa": [
-        "new york": 2270,
-        "chicago": 1780,
-        "los angeles": 2190
-    ]
-]
-
-func citiesForCountry(country: String) -> [String] {
-    return [String](flightPrices[country]!.keys)
-}
-
-func defaultCityForCountry(country: String) -> String {
-    return citiesForCountry(country).first!
-}
-
-func flightPrice(country: String, city: String) -> Int {
-    return flightPrices[country]![city]!
-}
-
-// MARK: - Stores
-
-struct CountryStore {
-    var country: String?
-    var dispatchToken: Token?
-}
-
-struct CityStore {
-    var city: String?
-    var dispatchToken: Token?
-}
-
-struct FlightPriceStore {
-    var price: Int?
-    var dispatchToken: Token?
-}
-
 // MARK: - Flight Dispatcher View Controller
 
 class FlightDispatcherViewController: UIViewController {
 
-    let flightDispatcher : Dispatcher = Dispatcher()
-    
-    var countryStore : CountryStore = CountryStore() {
-        // poor man's EventEmitter
-        didSet {
-            countryStoreChanged(oldValue)
-        }
-    }
-    
-    var cityStore : CityStore = CityStore() {
-        // poor man's EventEmitter
-        didSet {
-            cityStoreChanged(oldValue)
-        }
-    }
-    
-    var flightPriceStore : FlightPriceStore = FlightPriceStore() {
-        // poor man's EventEmitter
-        didSet {
-            flightPriceStoreChanged(oldValue)
-        }
-    }
+    let flux = FlightDispatcherFlux()
+    var listeners: [AnyObject] = []
     
     @IBOutlet weak var countrySelect: UISegmentedControl!
     @IBOutlet weak var citySelect: UISegmentedControl!
@@ -95,76 +23,50 @@ class FlightDispatcherViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // register for store events
+        listeners.append(flux.notificationCenter.addObserverForName(CountryStore.ChangeEvent, object: nil, queue: nil) { [unowned self] _ in
+            self.renderView()
+        })
+        listeners.append(flux.notificationCenter.addObserverForName(CityStore.ChangeEvent, object: nil, queue: nil) { [unowned self] _ in
+            self.renderView()
+        })
+        listeners.append(flux.notificationCenter.addObserverForName(FlightPriceStore.ChangeEvent, object: nil, queue: nil) { [unowned self] _ in
+            self.renderView()
+        })
         
-        // register callbacks
-        
-        countryStore.dispatchToken = flightDispatcher.register { [unowned self] action in
-            switch action.name {
-            case "countryUpdate":
-                self.countryStore.country = action.payload["selectedCountry"] as? String
-            default:
-                break
-            }
-        }
-        
-        cityStore.dispatchToken = flightDispatcher.register { [unowned self] action in
-            switch action.name {
-            case "countryUpdate":
-                self.flightDispatcher.waitFor(self.countryStore.dispatchToken!)
-                self.cityStore.city = defaultCityForCountry(self.countryStore.country!)
-            case "cityUpdate":
-                self.cityStore.city = action.payload["selectedCity"] as? String
-            default:
-                break
-            }
-        }
-        
-        flightPriceStore.dispatchToken = flightDispatcher.register { [unowned self] action in
-            switch action.name {
-            case "countryUpdate", "cityUpdate":
-                self.flightDispatcher.waitFor(self.cityStore.dispatchToken!)
-                self.flightPriceStore.price = flightPrice(self.countryStore.country!, self.cityStore.city!)
-            default:
-                break
-            }
-        }
         
         // dispatch initial action
-        flightDispatcher.dispatch(Action(name: "countryUpdate", payload: ["selectedCountry": "china"]))
+        flux.flightDispatcherActions.updateCountry("china")
+        
+        // render
+        renderView()
     }
     
     deinit {
-        flightDispatcher.unregister(countryStore.dispatchToken!)
-        flightDispatcher.unregister(cityStore.dispatchToken!)
-        flightDispatcher.unregister(flightPriceStore.dispatchToken!)
+        for listener in listeners {
+            flux.notificationCenter.removeObserver(listener)
+        }
     }
+    
 }
 
-
-// MARK: Store event handling
+// MARK: - View rendering
 
 extension FlightDispatcherViewController {
-    func countryStoreChanged(oldValue: CountryStore) {
-        if countryStore.country != oldValue.country {
-            citySelect.items = citiesForCountry(countryStore.country!)
-            countrySelect.selectedItem = countryStore.country
+    func renderView() {
+        countrySelect.items = [String](flightPrices.keys)
+        countrySelect.selectedItem = flux.countryStore.country
+        
+        if let country = flux.countryStore.country {
+            citySelect.items = citiesForCountry(country)
+        }
+        citySelect.selectedItem = flux.cityStore.city
+        
+        if let price = flux.flightPriceStore.price {
+            priceLabel.text = "$ \(price)"
         }
     }
-    
-    func cityStoreChanged(oldValue: CityStore) {
-        if cityStore.city != oldValue.city {
-            citySelect.selectedItem = cityStore.city
-        }
-    }
-    
-    func flightPriceStoreChanged(oldValue: FlightPriceStore) {
-        if flightPriceStore.price != oldValue.price {
-            priceLabel.text = "$ \(flightPriceStore.price!)"
-        }
-    }
-    
 }
-
 
 // MARK: View event handling
 
@@ -174,7 +76,7 @@ extension FlightDispatcherViewController {
         let index = countrySelect.selectedSegmentIndex
         
         if let country = countrySelect.selectedItem {
-            flightDispatcher.dispatch(Action(name: "countryUpdate", payload: ["selectedCountry": country]))
+            flux.flightDispatcherActions.updateCountry(country)
         }
     }
     
@@ -182,7 +84,7 @@ extension FlightDispatcherViewController {
         let index = citySelect.selectedSegmentIndex
         
         if let city = citySelect.selectedItem {
-            flightDispatcher.dispatch(Action(name: "cityUpdate", payload: ["selectedCity": city]))
+            flux.flightDispatcherActions.updateCity(city)
         }
     }
 }
