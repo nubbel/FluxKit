@@ -64,9 +64,14 @@ struct FlightPriceStore {
     var dispatchToken: Token?
 }
 
+struct Action : ActionType {
+    let name: String
+    let payload: [String: AnyObject]
+}
+
 class FlightDispatcherTests: XCTestCase {
 
-    var flightDispatcher = Dispatcher()
+    var flightDispatcher = Dispatcher<Action>()
     var countryStore = CountryStore()
     var cityStore = CityStore()
     var flightPriceStore = FlightPriceStore()
