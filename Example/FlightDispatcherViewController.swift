@@ -73,16 +73,12 @@ extension FlightDispatcherViewController {
 extension FlightDispatcherViewController {
     
     @IBAction func countryChanged(sender: AnyObject) {
-        let index = countrySelect.selectedSegmentIndex
-        
         if let country = countrySelect.selectedItem {
             flux.flightDispatcherActions.updateCountry(country)
         }
     }
     
     @IBAction func cityChanged(sender: AnyObject) {
-        let index = citySelect.selectedSegmentIndex
-        
         if let city = citySelect.selectedItem {
             flux.flightDispatcherActions.updateCity(city)
         }
