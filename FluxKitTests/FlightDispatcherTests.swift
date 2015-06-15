@@ -105,7 +105,7 @@ class FlightDispatcherTests: XCTestCase {
             switch action.name {
             case "countryUpdate", "cityUpdate":
                 self.flightDispatcher.waitFor(self.cityStore.dispatchToken!)
-                self.flightPriceStore.price = flightPrice(self.countryStore.country!, self.cityStore.city!)
+                self.flightPriceStore.price = flightPrice(self.countryStore.country!, city: self.cityStore.city!)
             default:
                 break
             }

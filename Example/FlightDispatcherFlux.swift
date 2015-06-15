@@ -102,7 +102,7 @@ final class FlightPriceStore: StoreType {
                 flux.flightDispatcher.waitFor(flux.countryStore.dispatchToken)
                 flux.flightDispatcher.waitFor(flux.cityStore.dispatchToken)
                 
-                self.price = flightPrice(flux.countryStore.country!, flux.cityStore.city!)
+                self.price = flightPrice(flux.countryStore.country!, city: flux.cityStore.city!)
                 flux.notificationCenter.postNotificationName(FlightPriceStore.ChangeEvent, object: self)
             default:
                 break

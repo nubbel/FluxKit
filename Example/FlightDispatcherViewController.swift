@@ -103,7 +103,7 @@ extension UISegmentedControl {
             return titleForSegmentAtIndex(selectedSegmentIndex)
         }
         set {
-            if let item = newValue, index = find(items, item) {
+            if let item = newValue, index = items.indexOf(item) {
                 selectedSegmentIndex = index
             } else {
                 selectedSegmentIndex = UISegmentedControlNoSegment
@@ -120,7 +120,7 @@ extension UISegmentedControl {
             insertSegmentWithTitle("", atIndex: 0, animated: animated)
         }
         
-        for (index, item) in enumerate(items) {
+        for (index, item) in items.enumerate() {
             setTitle(item, forSegmentAtIndex: index)
         }
     }
